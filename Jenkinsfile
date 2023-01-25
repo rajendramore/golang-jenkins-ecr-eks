@@ -14,7 +14,7 @@ node{
     def IMAGE_VERSION = "v${BUILD_NUMBER}"
     
     stage("Code checkout"){
-        git branch: "main", url: "${GITHUB_PROJECT_URL}", credentialsId: "${GITHUB_CREDENTIALS}"
+        git branch: "master", url: "${GITHUB_PROJECT_URL}"
     }
     stage("Project build & Push to ECR"){
         docker.withRegistry(
