@@ -12,7 +12,7 @@ node{
     def RUNNING_CONTAINER_NAME = "goappcontainer"
     def BUILD_NUMBER = currentBuild.number
     def IMAGE_VERSION = "v${BUILD_NUMBER}"
-    def root = tool type: 'go', name: 'go-tool'
+    def root = tool type: "go", name: "go-tool"
     
     stage("Code checkout"){
         git branch: "master", url: "${GITHUB_PROJECT_URL}"
@@ -42,7 +42,7 @@ node{
     stage("Deployment to EKS cluster"){
         withAWS(credentials: "${AWS_JENKINS_CREDENTIALS_ID}", region: "${AWS_REGION}") {
             sh "aws eks update-kubeconfig --region ${AWS_REGION} --name ${AWS_EKS_CLUSTER_NAME}"
-            sh "aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 088578890509.dkr.ecr.ap-south-1.amazonaws.com"
+            sh "aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com"
             sh "kubectl set image deployment.apps/${EKS_DEPLOYMENT_NAME} -n ${EKS_NAMESPACE} ${RUNNING_CONTAINER_NAME}=${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${AWS_ECR_IMAGE}:${IMAGE_VERSION}"
             sh "kubectl rollout status deployment/${EKS_DEPLOYMENT_NAME} -n ${EKS_NAMESPACE}"
         }
