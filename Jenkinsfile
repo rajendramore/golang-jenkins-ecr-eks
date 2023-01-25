@@ -12,9 +12,24 @@ node{
 //     def RUNNING_CONTAINER_NAME = "railspagecontainer"
 //     def BUILD_NUMBER = currentBuild.number
 //     def IMAGE_VERSION = "v${BUILD_NUMBER}"
+    def root = tool type: 'go', name: 'go-tool'
     
     stage("Code checkout"){
         git branch: "master", url: "${GITHUB_PROJECT_URL}"
+    }
+    withEnv(["GOROOT=${root}", "PATH+GO=${root}/bin"]){
+        stage('Dependencies version'){
+            sh 'go version'
+        }
+        stage('test'){
+            sh 'go test'
+        }
+    }
+    stage('SonarQube code analysis'){
+        def scannerHome = tool 'SonarScanner 4.0';
+        withSonarQubeEnv('SonarQube-server') { 
+          sh "${scannerHome}/bin/sonar-scanner"
+        }
     }
     stage("Project build & Push to ECR"){
         docker.withRegistry(
