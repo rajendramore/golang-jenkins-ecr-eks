@@ -5,13 +5,13 @@ node{
     def AWS_REGION = "ap-south-1"
     def AWS_JENKINS_CREDENTIALS_ID = "aws-ecr-credentials"
     def AWS_ECR_IMAGE = "goapp"
-    def AWS_EKS_CLUSTER_NAME = "cluster-eks"
-    def EKS_NAMESPACE = "railsapp"
-    def EKS_DEPLOYMENT_FILE = "deployment.yaml"
-    def EKS_DEPLOYMENT_NAME = "railswelcomepage"
-    def RUNNING_CONTAINER_NAME = "railspagecontainer"
-    def BUILD_NUMBER = currentBuild.number
-    def IMAGE_VERSION = "v${BUILD_NUMBER}"
+//     def AWS_EKS_CLUSTER_NAME = "cluster-eks"
+//     def EKS_NAMESPACE = "railsapp"
+//     def EKS_DEPLOYMENT_FILE = "deployment.yaml"
+//     def EKS_DEPLOYMENT_NAME = "railswelcomepage"
+//     def RUNNING_CONTAINER_NAME = "railspagecontainer"
+//     def BUILD_NUMBER = currentBuild.number
+//     def IMAGE_VERSION = "v${BUILD_NUMBER}"
     
     stage("Code checkout"){
         git branch: "master", url: "${GITHUB_PROJECT_URL}"
