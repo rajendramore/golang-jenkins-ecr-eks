@@ -8,8 +8,8 @@ node{
     def AWS_EKS_CLUSTER_NAME = "ekscluster"
     def EKS_NAMESPACE = "goapp"
     def EKS_DEPLOYMENT_FILE = "deployment.yaml"
-    def EKS_DEPLOYMENT_NAME = "goapppage"
-    def RUNNING_CONTAINER_NAME = "goappcontainer"
+    def EKS_DEPLOYMENT_NAME = "goapp-deployment"
+    def RUNNING_CONTAINER_NAME = "goapp"
     def BUILD_NUMBER = currentBuild.number
     def IMAGE_VERSION = "v${BUILD_NUMBER}"
     def root = tool type: "go", name: "go-tool"
