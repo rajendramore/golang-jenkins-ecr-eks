@@ -1,5 +1,5 @@
 node{
-    def GITHUB_PROJECT_URL = "https://github.com/bhuvi-12/railsproject.git"
+    def GITHUB_PROJECT_URL = "https://github.com/bhuvi-12/go-docker.git"
     def GITHUB_CREDENTIALS = "git-credentials-token"
     def AWS_ACCOUNT_ID = "542685624457"
     def AWS_REGION = "ap-south-1"
