@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: goapp
-        image: 542685624457.dkr.ecr.ap-south-1.amazonaws.com/goapp:v4
+        image: <ECR_REPO_URL>
         ports:
         - containerPort: 8080
