@@ -1,0 +1,11 @@
+pipeline {
+agent any
+stages {
+  stage('Checkout') 
+   { steps { git branch: 'master', url: 'https://github.com/prakashk0301/golang-jenkins-ecr-eks' }  }
+   
+   stage('Docker Image Build') 
+   { steps { sh 'docker build -t <IMAGE_NAME> .' } }
+   
+    stage('Push Docker Image to ECR') 
+    { steps {
