@@ -5,7 +5,17 @@ stages {
    { steps { git branch: 'master', url: 'https://github.com/prakashk0301/golang-jenkins-ecr-eks' }  }
    
    stage('Docker Image Build') 
-   { steps { sh 'docker build -t <IMAGE_NAME> .' } }
+   { steps { sh 'docker build -t 652912600783.dkr.ecr.eu-central-1.amazonaws.com/myecr:latest .' } }
+   
+  // syntax { steps { sh 'docker build -t <IMAGE_NAME> .' } }
+   
+   
+   
    
     stage('Push Docker Image to ECR') 
-    { steps {
+    
+    { steps { withAWS(credentials: 'ecr:eu-central-1:aws', region: 'eu-central-1') 
+      { sh 'aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin 652912600783.dkr.ecr.eu-central-1.amazonaws.com'
+        sh 'docker push 652912600783.dkr.ecr.eu-central-1.amazonaws.com/myecr:latest'}
+        
+     //get ecr get login and push command from ECR
