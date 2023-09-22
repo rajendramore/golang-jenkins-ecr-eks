@@ -7,7 +7,7 @@ pipeline
         { steps { git branch: 'master', credentialsId: 'a730f28d-8ba9-49bd-a94e-41023193ff53', url: 'https://github.com/rajendramore/golang-jenkins-ecr-eks.git' } }
 
         stage ('Docker Image Creation')
-        { steps {sh 'docker build -t 313810612117.dkr.ecr.us-east-1.amazonaws.com/devops-repo:latest .'}}
+        { steps {sh 'docker build -t 313810612117.dkr.ecr.us-east-1.amazonaws.com/devops-repo:latest --file Dockerfile_ECR_EKS_K8s .'}}
 
         stage ('Docker Push Artifacts')
        { steps { withDockerRegistry(credentialsId: 'ecr:us-east-1:e0065121-ff8c-4d6e-85d6-aaa80f992ed1', url: '313810612117.dkr.ecr.us-east-1.amazonaws.com/devops-repo')
