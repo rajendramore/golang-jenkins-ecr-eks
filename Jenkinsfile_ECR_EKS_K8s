@@ -10,7 +10,7 @@ pipeline
         { steps {sh 'docker build -t 313810612117.dkr.ecr.us-east-1.amazonaws.com/devops-repo:latest --file Dockerfile_ECR_EKS_K8s .'}}
 
         stage ('Docker Push Artifacts')
-       { steps { withDockerRegistry(credentialsId: 'ecr:us-east-1:e0065121-ff8c-4d6e-85d6-aaa80f992ed1', url: 'https://313810612117.dkr.ecr.us-east-1.amazonaws.com/devops-repo')
+       { steps { withDockerRegistry(credentialsId: 'ecr:us-east-1:e0065121-ff8c-4d6e-85d6-aaa80f992ed11', url: 'https://313810612117.dkr.ecr.us-east-1.amazonaws.com/devops-repo')
         { sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 313810612117.dkr.ecr.us-east-1.amazonaws.com'
          sh 'docker push 313810612117.dkr.ecr.us-east-1.amazonaws.com/devops-repo:latest' } }}
 
