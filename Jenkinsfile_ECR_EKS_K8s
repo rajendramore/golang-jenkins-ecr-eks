@@ -9,7 +9,7 @@ pipeline
         stage ('Docker Image Creation')
         { steps {sh 'docker build -t 313810612117.dkr.ecr.us-east-1.amazonaws.com/devops-repo:latest --file Dockerfile_ECR_EKS_K8s .'}}
 
-        stage ('Docker Push Artifacts')
+        stage ('Docker Push Artifacts to ECR')
        { steps { withDockerRegistry(credentialsId: 'ecr:us-east-1:a2a2b69e-789d-440f-b5b1-e80cbba9e317', url: 'https://313810612117.dkr.ecr.us-east-1.amazonaws.com/devops-repo') 
        { sh 'docker push 313810612117.dkr.ecr.us-east-1.amazonaws.com/devops-repo:latest' }} }
 
