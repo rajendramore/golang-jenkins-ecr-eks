@@ -11,7 +11,9 @@ pipeline
 
         stage ('Docker Push Artifacts')
        { steps { withDockerRegistry(credentialsId: 'ecr:us-east-1:a2a2b69e-789d-440f-b5b1-e80cbba9e317', url: 'https://313810612117.dkr.ecr.us-east-1.amazonaws.com/devops-repo') 
-       { sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 313810612117.dkr.ecr.us-east-1.amazonaws.com'
+       { sh 'export AWS_ACCESS_KEY_ID=AKIAUSEER56K6SHAFUPG'
+         sh 'export AWS_SECRET_ACCESS_KEY=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'
+         sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 313810612117.dkr.ecr.us-east-1.amazonaws.com'
          sh 'docker push 313810612117.dkr.ecr.us-east-1.amazonaws.com/devops-repo:latest' } }}
 
     }
